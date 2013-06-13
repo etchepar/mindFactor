@@ -1,2 +1,9 @@
-@(city: String, country: String)
-
+@(city: String, country: String)<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+<soapenv:Body>
+<ns1:GetWeather xmlns:ns1="http://www.webserviceX.NET">
+<ns1:CityName>@city</ns1:CityName>
+<ns1:CountryName>@country</ns1:CountryName>
+</ns1:GetWeather>
+</soapenv:Body>
+</soapenv:Envelope>

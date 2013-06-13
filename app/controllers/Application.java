@@ -38,8 +38,8 @@ public class Application extends Controller {
 		 * client stub generation sample :
 		 * /wsdl2java.sh -uri "http://www.webservicex.com/globalweather.asmx?WSDL" -p com.webservice -d adb -s 
 		 */
-
-/*		GlobalWeatherStub stub;
+/*
+		GlobalWeatherStub stub;
 		String responseStr ="";
 		try {
 			stub = new GlobalWeatherStub("http://www.webservicex.com/globalweather.asmx");
@@ -93,20 +93,12 @@ public class Application extends Controller {
 				        	  
 				        	  
 //				        	  NodeList GetWeatherResultNode = XPath.selectNodes("GetWeatherResult", dom.getFirstChild());
-				        	  NodeList GetWeatherResultNode = XPath.selectNodes("//wea:GetWeatherResponse", dom, nameSpaceList);
-				        	  System.out.println(GetWeatherResultNode.getLength());
-				        	  if (GetWeatherResultNode!= null && GetWeatherResultNode.getLength()>0)
-				        			  System.out.println("##########"+GetWeatherResultNode.item(0).getNodeName());
-				        	  else 
-				        		  System.out.println("nada");
+				        	  Node getWeatherResultNode = XPath.selectNode("//wea:GetWeatherResponse", dom, nameSpaceList);
+				        	  System.out.println(getWeatherResultNode.getNodeName());
+		        			  System.out.println("##########"+getWeatherResultNode.getTextContent()+"\n######");
 				        	  
 				        	  
-			                  Node myNode = XPath.selectNode("//soap:Envelope",dom, nameSpaceList);
-				        	  System.out.println(myNode.getNodeName());
-
-				        	  
-				        	  
-				        	  return ok("toto"+response.getStatus()+"--"+response.getHeader(CONTENT_TYPE)+"--"+response.asXml().getXmlEncoding()+"--"+response.asXml().getFirstChild().getFirstChild().getFirstChild().getFirstChild().getFirstChild().getTextContent());
+				        	  return ok("toto"+response.getStatus()+"--"+response.getHeader(CONTENT_TYPE)+"--\n"+getWeatherResultNode.getTextContent());
 				          }
 				        }
 				      )
